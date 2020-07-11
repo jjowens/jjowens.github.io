@@ -1,0 +1,44 @@
+{
+    "Title": "General Knowledge Quiz",
+    "Questions": [
+        {
+            "Question": "Who was the actor who portrayed Iron Man in the Marvel movies?",
+            "Answers": [ 
+                "Robert Downey Jnr",
+                "Chris Hemsworth",
+                "Paul Bettany",
+                "Paul Rudd"
+            ],
+            "CorrectAnswer": "Robert Downey Jnr"
+        },
+        {
+            "Question": "Josh Brolin played a character who stole a case of money from a dangerous hitman. Name that movie",
+            "Answers": [
+                "A Simple Plan",
+                "No Country for Old Men",
+                "Oldboy",
+                "Fargo"
+            ],
+            "CorrectAnswer": "No Country for Old Men"
+        },
+        {
+            "Question": "Anatomy. In your body, where would you find metatarsal bones?",
+            "Answers": [
+                "Hand",
+                "Foot",
+                "Hip",
+                "Knee"
+            ],
+            "CorrectAnswer": "Foot"
+        },
+        {
+            "Question": "History. Winston Churchill became Prime Minister in 1940. Who was the previous Prime Minister?",
+            "Answers": [
+                "Ramsay MacDonald",
+                "Clement Attlee",
+                "Neville Chamberlain"
+            ],
+            "CorrectAnswer": "Neville Chamberlain"
+        }
+    ]
+}
