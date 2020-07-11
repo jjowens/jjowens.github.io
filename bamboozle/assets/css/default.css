@@ -133,7 +133,7 @@ body {
     margin: 0px;
 }
 
-.page-text {
+.page-text-row {
     clear: both;
     cursor: pointer;
 }
@@ -145,4 +145,11 @@ body {
 
 .page-text-number {
     float: right;
+}
+
+.disclaimer {
+    text-align: center;
+    color: white;
+    margin: 0px;
+    padding: 0px;
 }
