@@ -148,12 +148,17 @@
                 <p>Page {{ currentPageNumber }} is not recognised. Try those below. This is not a full blown Teletext service. Sorry!</p>
             </div>
             <div class="page-text-row" v-on:click="goToPage(390)">
-                <div class="page-text"><p>Bamboozle</p></div><div class="page-text-number"><p>390</p></div>
+                <div class="page-text"><p>Bamboozle</p></div>
+                <div class="page-text-number"><p>............................................................................390</p></div>
             </div>
             <div class="page-text-row"  v-on:click="goToPage(200)">
-                <div class="page-text"><p>Holidays</p></div><div class="page-text-number"><p>200</p></div>
+                <div class="page-text"><p>Holidays</p></div>
+                <div class="page-text-number"><p>............................................................................200</p></div>
             </div>
         </div>
+    </div>
+    <div class="disclaimer">
+       <p>Disclaimer: No copyright infringment is intended. This is a fun and parody project.</p>
     </div>
 
     <script src="assets/scripts/axios.min.js"></script>
