@@ -9,17 +9,17 @@
 <body>
     <div id="app" class="bamboozler-frame">
         <div class="tele-header">
-            <div class="tele-header-left tele-pagenumber">
+            <div class="tele-pagenumber">
                 <input v-model="pageNumber" class="tele-page-number" v-on:change="updatePageNumber"/>
             </div>
-            <div class="tele-header-middle tele-title">Teletext</div>
-            <div class="tele-header-right">
+            <div class="tele-header-middle">Teletext</div>
+            <div>
                 <span class="tele-date">{{ currentDate }}</span> 
                 <span class="tele-time">{{ currentTime }}</span>
             </div>
         </div>
-        <div class="clearRow"></div>
-        <div v-if="currentPageNumber == 390">
+        <div class="clearRow"></div><br/>
+        <div class="div-flex" v-if="currentPageNumber == 390">
             <div>
                 <h1 class="tele-banner-header">Bamboozle!</h1>
                 <hr class="tele-underline"/>
@@ -87,7 +87,7 @@
             <div v-if="quizSuccess === true">
                 <div>
                     <div class="tele-speech-bubble">
-                        <p>Well done, you've answered all {{ maxCorrectAnswers }} questions correctly!. Would you like to try again?</p>
+                        <p>Well done, you've answered all {{ maxCorrectAnswers }} questions correctly! Would you like to try again?</p>
                     </div>
                     <div class="tele-bamber-profile">
                         <div class="temp-bamber">
@@ -118,7 +118,7 @@
                 <h1>NEED A HOLIDAY? GO TO PAGE 200</h1>
             </div>
         </div>
-        <div v-if="currentPageNumber == 200">
+        <div  class="div-flex" v-if="currentPageNumber == 200">
             <div>
                 <h1 class="tele-banner-header">Holidays</h1>
                 <hr class="tele-underline"/>
@@ -128,7 +128,7 @@
                     <img src="assets/images/palm-tree.jpg"/>
                 </div>
                 <div class="holiday-offers">
-                    <h2 class="offers-headline">HOLIDAY OFFER:</h2>
+                    <h2 class="offers-headline">HOLIDAY OFFERS:</h2>
                     <p>Call 555-4352. Give Quote Code</p>
                     <p><span class="holiday-offers-location">Barcelona, Spain</span> Five nights. 3 start hotel. Quote Code BAR53</p>
                     <p><span class="holiday-offers-location">Rome, Italy</span> Two nights. 5 star hotel. Quote Code ROM25</p>
@@ -149,12 +149,13 @@
             </div>
             <div class="page-text-row" v-on:click="goToPage(390)">
                 <div class="page-text"><p>Bamboozle</p></div>
-                <div class="page-text-number"><p>............................................................................390</p></div>
+                <div class="page-text-number"><p>390</p></div>
             </div>
             <div class="page-text-row"  v-on:click="goToPage(200)">
                 <div class="page-text"><p>Holidays</p></div>
-                <div class="page-text-number"><p>............................................................................200</p></div>
+                <div class="page-text-number"><p>200</p></div>
             </div>
+            <div class="clearRow"></div>
         </div>
     </div>
     <div class="disclaimer">
