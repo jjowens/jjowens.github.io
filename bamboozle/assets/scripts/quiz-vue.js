@@ -29,7 +29,7 @@ var app = new Vue({
         this.currentPageNumber = initalPageNumber;
         this.pageNumber = initalPageNumber;
 
-        this.loadData();
+        this.loadRandomData(); 
         this.getCurrentDatetime();
 
         setInterval(this.getCurrentDatetime, 5000);
@@ -73,6 +73,12 @@ var app = new Vue({
             this.quizSuccess = false;
             this.quizIntro = true;
             this.countCorrectAnswers = 0;
+            this.currentQuestionIndex = 0;
+            this.loadRandomData();
+        },
+        wonQuiz: function (event) {
+            this.quizStart = false;
+            this.quizSuccess = true;
         },
         failedQuiz: function (event) {
             this.quizStart = false;
@@ -82,16 +88,37 @@ var app = new Vue({
             this.ranOutOfQuestions = true;
             this.quizStart = false;
         },
-        loadData: function () {
+        loadRandomData: function () {
             axios.get('assets/questions/general.json')
                 .then(response => {
+                    this.questions = [];
                     var quizJson = response.data;
 
-                    this.questions = quizJson.Questions;
+                    var batchQuestions = quizJson.Questions;
                     
-                    this.totalQuestions = this.questions.length;
+                    this.totalQuestions = batchQuestions.length;
+
+                    var maxQuestions = this.maxCorrectAnswers;
+
+                    if (maxQuestions > this.totalQuestions) {
+                        maxQuestions = this.totalQuestions - 1;
+                    }
+
+                    // GET RANDOM INDEXES
+                    var idxes = [];
+
+                    while(idxes.length < this.maxCorrectAnswers){
+                        var r = Math.floor(Math.random() * this.totalQuestions) + 1;
+                        if(idxes.indexOf(r) === -1) idxes.push(r);
+                    }
+
+                    for(const idx in idxes) {
+                        var questionIndex = idxes[idx];
+                        this.questions.push(batchQuestions[questionIndex]);
+                    }
 
                     this.currentQuestion = this.questions[this.currentQuestionIndex];
+
                 })
                 .catch(function (error) {
                     // handle error
@@ -104,7 +131,13 @@ var app = new Vue({
         validateAnswer: function(selectedAnswer) {
             if (this.currentQuestion.CorrectAnswer === selectedAnswer) {
                 this.countCorrectAnswers = this.countCorrectAnswers + 1;
-                this.nextQuestion();
+
+                if (this.countCorrectAnswers === this.maxCorrectAnswers) {
+                    this.wonQuiz();
+                } else {
+                    this.nextQuestion();
+                }
+                
             } else {
                 this.failedQuiz();
             }

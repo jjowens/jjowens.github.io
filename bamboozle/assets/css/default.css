@@ -5,6 +5,10 @@ body {
     -webkit-font-smoothing: none;
 }
 
+.red-outline {
+    border: 2px red solid;
+}
+
 .clearRow {
     clear: both;
 }
@@ -13,32 +17,40 @@ body {
     cursor: pointer;
 }
 
-.bamboozler-frame {
+.bamboozler-frame {  
     width: 45%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
 }
 
+@media only screen and (max-width: 600px) {
+    .bamboozler-frame {  
+        width: 100%;
+    }
+ }
+
 .tele-header {
+    display: flex;  
+    justify-content: space-between;
     clear: both;
 }
 
-.tele-header-left {
-    float: left;
+.div-flex {
+    display: flex;
+    flex-direction: column;
 }
 
+
 .tele-header-middle {
-    float: left;
     width: 25%;
     background-color: blue;
     color: yellow;
-    margin-left: 100px;
     text-align: center;
-}
-
-.tele-header-right {
-    float: right;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
 }
 
 .tele-banner-header {
@@ -108,18 +120,24 @@ body {
     border: none;
 }
 
+@media only screen and (max-width: 600px) {
+    .tele-page-number {
+        width:25%;
+    }
+ }
+
 .tele-footer-select {
     cursor: pointer;
 }
 
 .holiday-palm-tree {
     float: left;
-    margin-right: 25px;
 }
 
 .holiday-offers {
-    float: left;
+    float: right;
     color: white;
+    width: 65%;
 }
 
 .holiday-offers-location {
