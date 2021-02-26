@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App Meme</title>
+    <link rel="stylesheet" type="text/css" href="public/css/ts/ts.css" media="screen"/>
+    <script type="text/javascript" src="public/scripts/vue.min.js"></script>
+</head>
+<body>
+    <div id="app" class="">
+        <div class="m-2">
+            <div class="float-left mt-2">
+                <p>
+                    <button v-on:click="toggleEditor" class="editor-button">{{ editorToggleText }}</button>
+                        <button v-on:click="addMessage" class="editor-button">Add Message</button>
+                        <button v-on:click="clearAllMessages" class="editor-button">Clear All</button>
+                </p>
+            </div>
+            <div class="clear-both"></div>
+        </div>
+    
+    
+        <div class="float-left w-2/6"  >
+            <div>
+                <!-- CHAT APP -->
+                <div class="bg-white m-2 p-2 border-gray-600 bg-gray-100 rounded">
+                    <div class="text-center">
+                        <div v-on:click="toggleEditTitle" :class="[chatTitleVisible]">
+                            <p class="text-center" >{{ chatOptions.chatTitle }}</p>
+                        </div>
+                        <div :class="[chatTitleEditorVisible]">
+                            <p class="text-center"><input type="text" v-model="chatOptions.chatTitle" /> 
+                                <button v-on:click="toggleEditTitle" class="editor-button">Close</button></p>
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div v-for="message in messages">
+                        <div :class="editorCSS" class="float-right" >
+                            <button class="delete-button" v-on:click="deleteMessage(message)">Delete</button>
+                        </div>
+
+                        <!-- MESSAGE -->
+                        <div v-on:click="toggleEditMessage(message)" :class="[message.person.themeAlignment.alignValue, message.messageVisible]" class="p-2 w-6/12">
+                            <div>
+                                <p>{{ message.person.personName}}</p>
+                            </div>
+                            <div class="float-left p-1 rounded"  :class="[message.person.backgroundColour.colourValue,message.person.foregroundColour.colourValue]">
+                               {{ message.message }}
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+
+                        <!-- EDIT MESSAGE -->
+                        <div :class="[message.editorVisible]" >
+                            <div class="clear-both"></div>
+                            <div>
+                                <p><select id="peopleNames" v-model="message.person">
+                                    <option v-for="person in orderedPeople" :value="person">{{ person.personName }}</option>
+                                </select></p>
+                            </div>
+                            <div>
+                               <textarea cols="20" rows="6" v-model="message.message" >{{ message.message }}</textarea>
+                            </div>
+                            <div>
+                                <button v-on:click="toggleEditMessage(message)" class="editor-button">Close</button>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+
+                        <div class="clear-both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SIDEBAR SETTINGS -->
+        <div id="side-bar-settings" :class="editorCSS">
+            <!-- Settings -->
+            <div class="float-left">
+                <p :class="statusCSS">{{ statusText }}</p>
+
+                <div class="editor-widget">
+                    <h2>Settings</h2>
+                    <div>
+                        <p>Show Chat Title <input type="checkbox" v-model="chatOptions.chatTitleShow" /></p>
+                        <p>Default Message <input type="text" v-model="chatOptions.defaultMessage" /></p>
+                        <p>Alternate person on each new message <input type="checkbox" v-model="alternatePersonPerNewMessage" /></p>
+                    </div>
+                </div>
+
+                <div class="editor-widget">
+                    <h2>People</h2>
+                    <div class="mb-1">
+                        <p>Enter a name. <br/>To add multiple people, separate names with a comma i.e. Peter, Paul, Jane</p>
+                        <p class="mb-1"><input type="text" v-model="newPersonName" >
+                            <button v-on:click="addPerson" class="editor-button">Add Person</button>
+                            <button v-on:click="clearAllPeople" class="editor-button">Clear People</button>
+                        <p>Alternate background for each new person <input type="checkbox" v-model="alternateThemePerPerson" /></p>
+                    </div>
+                    <div class="border-solid border-2 border-gray-300 rounded mb-2 p-1" v-for="person in people" class="mb-2">
+                        <div>
+                            <div>
+                                <p>{{ person.personName }}</p>
+                            </div>
+                            <div>
+                                <div class="float-left">
+                                    <p>Background Colour</p>
+                                </div>
+                                <div class="float-right">
+                                    <select v-model="person.backgroundColour">
+                                        <option v-for="colour in orderedBackgroundColours" :value="colour" >{{ colour.colourName }}</option>
+                                    </select>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                            <div>
+                                <div class="float-left">
+                                    <p>Text Colour</p>
+                                </div>
+                                <div class="float-right">
+                                    <select v-model="person.foregroundColour"> 
+                                        <option v-for="colour in orderedColours" :value="colour">{{ colour.colourName }}</option>
+                                    </select>
+                                </div>
+                                <div class="clear-both"></div>    
+                            </div>
+                            <div class="block">
+                                <div class="float-left">
+                                    <p>Alignment</p>
+                                </div>
+                                <div class="float-right">
+                                    <select v-model="person.themeAlignment"> 
+                                        <option v-for="themeAlign in themeAlignments" :value="themeAlign">{{ themeAlign.alignName }}</option>
+                                    </select>
+                                </div>
+                                <div class="clear-both"></div> 
+                            </div>
+                        </div>
+                        <div class="clear-both"></div>
+                    </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+</body>
+<script type="application/javascript" src="public/scripts/chat.js"></script>
+</html>
