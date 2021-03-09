@@ -6,7 +6,8 @@ const app = new Vue({
     data: {
         authors: [],
         articles: [],
-        filteredAuthors: []
+        filteredAuthors: [],
+        currentAuthorObj: ''
     },
     methods: {
         preload: function(event) {
@@ -23,7 +24,6 @@ const app = new Vue({
             this.filteredAuthors = [];
         },
         addAuthorToFilter: function(authorObj) {
-
             let idx = this.filteredAuthors.indexOf(authorObj);
 
             if (idx === -1) {
@@ -32,11 +32,13 @@ const app = new Vue({
                 this.filteredAuthors.splice(idx, 1);
             }
 
+            this.currentAuthorObj = authorObj;
             this.filterArticles();
         },
         filterArticles: function() {
             this.clearArticleFilters();
             this.addFilterToArticles();
+
         },
         clearArticleFilters: function() {
             this.articles.forEach(articleObj => {
@@ -46,19 +48,25 @@ const app = new Vue({
             });
         },
         addFilterToArticles: function() {
-            this.articles.forEach(articleObj => {
-                articleObj.links.forEach(linkObj => {
-                    linkObj.Authors.forEach(authorObj => {
-                        this.filteredAuthors.forEach(filteredAuthor => {
-                            if (filteredAuthor.fullname === authorObj.fullname) {
-                                linkObj.filterCSS = "visible";
+            for(let articleIdx=0; articleIdx < this.articles.length; articleIdx++) {
+                for(let linkIdx=0; linkIdx < this.articles[articleIdx].links.length; linkIdx++) {
+                    totalAuthors = this.articles[articleIdx].links[linkIdx].Authors.length - 1;
+
+                    for(let authorIdx=0; authorIdx < this.articles[articleIdx].links[linkIdx].Authors.length; authorIdx++) {
+                        for(let filterAuthorIndex=0; filterAuthorIndex < this.filteredAuthors.length; filterAuthorIndex++) {
+                            if (this.filteredAuthors[filterAuthorIndex].fullname.trim() === this.articles[articleIdx].links[linkIdx].Authors[authorIdx].fullname.trim()) {
+                                this.articles[articleIdx].links[linkIdx].filterCSS = "visible";
+                                break;
                             } else {
-                                linkObj.filterCSS = "hidden";
+                                // DO NOT HIDE IF ALREADY FILTERED TO BE SHOWN
+                                if (this.articles[articleIdx].links[linkIdx].filterCSS !== "visible") {
+                                    this.articles[articleIdx].links[linkIdx].filterCSS = "hidden";
+                                }
                             }
-                        });
-                    });
-                });
-            });
+                        }
+                    }
+                }
+            }
         }
     }
 });
