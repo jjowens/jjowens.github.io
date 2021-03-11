@@ -1,0 +1,26 @@
+{
+  "name": "jjowens.github.io",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/jjowens/jjowens.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.21.1",
+    "tailwindcss": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss-cli@latest build ./assets/src/tailwind.css -c ./assets/config/tailwind.dev.config.js -o ./public/css/ts.css",
+	  "prod": "npx tailwindcss-cli@latest build ./assets/src/tailwind.css -c ./assets/config/tailwind.prod.config.js -o ./public/css/ts.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjowens/jjowens.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jjowens/jjowens.github.io/issues"
+  },
+  "homepage": "https://github.com/jjowens/jjowens.github.io#readme"
+}
