@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
+
+
+.tagged {
+    @apply bg-blue-200 border-2 border-blue-300 rounded pl-2 pr-2 pt-1 pb-1;
+}
+
+.project-header {
+    @apply bg-gray-200 border-2 border-gray-300 rounded p-1;
+}
+
+.project-widget {
+    @apply mb-2 shadow-md;
+}
+
+.project-description {
+    @apply p-1 bg-purple-100;
+}
+
 @tailwind utilities;
