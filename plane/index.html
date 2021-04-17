@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plane</title>
+    <style>
+        .content {
+            margin-top: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 3rem;
+            background: url("earth.png") no-repeat center;
+            height: 300px;
+        }
+
+        .content p {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .earth {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .plane {
+            margin-top: -80px;
+            animation: flyplane 10s normal infinite;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .clear-both {
+            clear: both;
+        }
+
+        @keyframes flyplane {
+            from {transform: rotate(0deg);}
+            to {transform: rotate(360deg);}
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="content">
+        <img class="plane" src="plane-tall.png" />
+        <div class="clear-both">
+        </div>
+        <div>
+            <p>Travelling around the world</p>
+        </div>
+    </div>
+
+</body>
+</html>
