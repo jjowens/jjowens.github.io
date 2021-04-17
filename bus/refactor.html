@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Italian Job</title>
+    <style>
+        .content {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            text-align: center;
+        }
+
+        .bus {
+            position: relative;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            text-align: center;
+            padding: 4px;
+            animation: myimage 10s infinite alternate-reverse;
+        }
+
+        .rotate-image {
+            padding: 4px;
+            animation: myimage 10s infinite alternate-reverse;
+        }
+
+        .cliff-edge {
+            position: relative;
+            float: left;
+            margin-top: -40px;
+            margin-left: 200px;
+            width: 250px;
+            height: 120px;
+            background: black;
+        }
+
+        .movie-quote {
+            font-weight: bold;
+            clear: both;
+            font-size: 3rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            width: 70%;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0px;
+        }
+
+        @keyframes myimage {
+            from { transform: rotate(15deg);}
+            to {transform: rotate(20deg);}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="bus">
+            <img src="bus-small.png">
+        </div>
+        <div class="cliff-edge">
+            
+        </div>
+        <div class="movie-quote">
+            <p>"Hang on a minute lads, I've got a great idea."</p>
+        </div>
+    </div>
+</body>
+</html>
