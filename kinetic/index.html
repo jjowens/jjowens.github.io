@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Energy</title>
+    <style>
+        .content {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .leftie {
+            position: relative;
+            float: left;
+            top: 260px;
+            text-align: center;
+        }
+
+        .kinetic-swing {
+            position: relative;
+            float: left;
+            top: 0px;
+            height: 430px;
+            vertical-align: bottom;
+        }
+
+        .left-kinetic-swing-animation {
+            animation: leftKeyframes 2s alternate-reverse infinite;
+            animation-delay: 0s;
+        }
+
+        .right-kinetic-swing-animation {
+            animation: rightKeyframes 2s alternate-reverse infinite;
+            animation-delay: 0s;
+        }
+
+        .left-kinetic {
+            position: relative;
+            bottom: -260px;
+        }
+
+        .right-kinetic {
+            position: relative;
+            bottom: -260px;
+        }
+
+        .middle-kinetic {
+            position: relative;
+        }
+
+        .trace-box {
+            border: 2px red solid;
+        }
+
+        @keyframes leftKeyframes {
+            from {transform: rotate(95deg);}
+            to {transform: rotate(0deg);}
+        }
+
+        @keyframes rightKeyframes {
+            from {transform: rotate(-95deg);}
+            to {transform: rotate(0deg);}
+        }
+
+        .clear-both {
+            clear: both;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .content {
+                position: relative;
+                margin-top: 30px;
+                margin-left: 0px;
+                margin-right: 0px;
+                width: 100%;
+                padding: 0px;
+                left: -10px;
+            }
+
+            img {
+                transform: scale(0.3);
+            }
+
+            .leftie {
+                position: relative;
+                float: left;
+                top: 50px;
+                text-align: center;
+                margin-left: 5px;
+                margin-right: 5px;
+                padding: 0px;
+                width: 10%;
+                left: 0px;
+            }
+
+            .kinetic-swing {
+                position: relative;
+                float: left;
+                top: -110px;
+                height: 200px;
+                vertical-align: bottom;
+                width: 10%;
+            }
+
+            .left-kinetic {
+                position: relative;
+                bottom: -160px;
+                margin-left: 0px;
+                margin-right: 0px;
+                padding: 0px;
+                left: 0px;
+            }
+
+            .right-kinetic {
+                position: relative;
+                bottom: -160px;
+                margin-left: 0px;
+                margin-right: 0px;
+                padding: 0px;
+                left: px;
+            }
+
+            @keyframes leftKeyframes {
+                from {transform: rotate(30deg);}
+                to {transform: rotate(0deg);}
+            }
+
+            @keyframes rightKeyframes {
+                from {transform: rotate(-30deg);}
+                to {transform: rotate(0deg);}
+            }
+        }
+
+    </style>
+
+    <script>
+        let kineticSwing = "left";
+
+        function startKineticSwing() {
+            let animationClass = "-kinetic-swing-animation";
+            let addAnimation = "";
+            let removeAnimation = "";
+            let addAnimationObj = {};
+            let removeAnimationObj = {};
+            let currentKinetic = kineticSwing;
+            
+            if (kineticSwing === "left") {
+                addAnimation = "right" + animationClass;
+                addAnimationObj = document.getElementById("right-swing");
+
+                removeAnimation = "left" + animationClass;
+                removeAnimationObj = document.getElementById("left-swing");
+                kineticSwing = "right";
+            } else {
+                addAnimation = "left" + animationClass;
+                addAnimationObj = document.getElementById("left-swing");
+
+                removeAnimation = "right" + animationClass;
+                removeAnimationObj = document.getElementById("right-swing");
+                kineticSwing = "left";
+            }
+
+            addAnimationObj.classList.add(addAnimation);
+            removeAnimationObj.classList.remove(removeAnimation);
+            shiftMiddleKinetics(currentKinetic);
+
+        }
+
+        function shiftMiddleKinetics(currentKinetic) {
+            let middleKinetics = document.getElementsByClassName("middle-kinetic");
+            let leftShift = "0px";
+            if (currentKinetic === "left") {
+                leftShift = "10px";
+            } else {
+                leftShift = "0px";
+            }
+
+            for (let index = 0; index < middleKinetics.length; index++) {
+                const middleKinetic = middleKinetics[index];
+                middleKinetic.style.left = leftShift;
+            }
+        }
+
+        let myInterval = setInterval(startKineticSwing, 3500);
+
+    </script>
+
+</head>
+<body>
+    <div class="content">
+        <div id="left-swing" class="kinetic-swing left-kinetic-swing-animation">
+            <img class="left-kinetic" src="images/kineticball.png" />
+        </div>
+        <div>
+            <div class="leftie middle-kinetic">
+                <img src="images/kineticball.png" />
+            </div>
+            <div class="leftie middle-kinetic">
+                <img src="images/kineticball.png" />
+            </div>
+            <div class="leftie middle-kinetic">
+                <img src="images/kineticball.png" />
+            </div>
+        </div>
+        <div id="right-swing" class="kinetic-swing">
+            <img class="right-kinetic" src="images/kineticball.png" />
+        </div>
+        <div class="clear-both">
+
+        </div>
+    </div>
+</body>
+</html>
