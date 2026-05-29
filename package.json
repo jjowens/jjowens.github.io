@@ -4,7 +4,7 @@
   "description": "You can use the [editor on GitHub](https://github.com/jjowens/jjowens.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.32.0",
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {},
